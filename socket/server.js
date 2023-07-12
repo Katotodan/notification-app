@@ -19,10 +19,40 @@ const io = new Server(httpServer, {
         origin: ["http://localhost:3000"]
     }
 });
+let onlineUser = []
+const addUser =(username, socket)=>{
+    onlineUser.push({username,userId: socket.id})
+}
+const isUserOnline = (username) =>{
+    for(let i=0; i<onlineUser.length; i++){
+        if(onlineUser[i].username === username) {
+            return true
+        }
+    }
+    return false
+}
+const getUserId =(username) =>{
+    for(let i=0; i<onlineUser.length; i++){
+        if(onlineUser[i].username === username) {
+            return onlineUser[i].userId
+        }
+    }
+    return false
+}
 
 io.on("connection", (socket) => {
-  console.log('Someone has been connected')
+  socket.on("new_connection", (user) => {
+    addUser(user, socket) 
+  })
+  socket.on("like", (message)=> {
+    if(isUserOnline(message.to)){
+        io.to(getUserId(message.to)).emit("pictureLiked", message.user)
+    }else{
+        console.log("user not online")
+    }
+  })
 });
+// Working on socket
 
 
 const start = async() => {

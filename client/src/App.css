@@ -43,6 +43,7 @@ nav{
     padding: 1rem 2rem;
     background-color: azure;
     display: flex;
+    position: relative;
 }
 .logo{
     width: 60%;
@@ -94,3 +95,23 @@ nav{
     cursor: pointer;
 }
 
+.like-msg{
+    position: absolute;
+    top: 100%;
+    right: 10rem;
+    width: 17rem;
+    background-color: white;
+    min-height: 5rem;
+    border-radius: 5px;
+    padding: 0.2rem;
+    display: none;
+}
+.like-msg span{
+    text-align: center;
+}
+.like-msg button{
+    display: block;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    padding: 0rem 1rem;
+}
