@@ -52,7 +52,6 @@ io.on("connection", (socket) => {
     }
   })
 });
-// Working on socket
 
 
 const start = async() => {

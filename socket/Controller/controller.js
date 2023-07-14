@@ -19,5 +19,49 @@ const getPosts = async (req,res, next) =>{
         next(error)
     }
 }
+const likeImg = async (req, res, next) =>{
+    try {
+        const img = await PostModel.findOne({ _id: req.body.id })
+        img.$inc('like', 1)
+        img.$inc('showNotifications', 1)
+        img.poepleLike.push(req.body.user);
+        await img.save()
 
-export {postImg, getPosts};
+        res.json(img)
+    } catch (error) {
+        next(error)
+    }
+}
+const disLikeImg = async (req, res, next) =>{
+    try {
+        const img = await PostModel.findOne({ _id: req.body.id })
+        img.$inc('like', -1)
+        img.poepleLike = img.poepleLike.filter(people => people !== req.body.user)
+        await img.save()
+        res.json(img)
+    } catch (error) {
+        next(error)
+    }
+}
+
+const addComment = async (req, res, next) =>{
+    try {
+        const img = await PostModel.findOne({ _id: req.body.id })
+        img.comments.push([req.body.comment, req.body.client])
+        await img.save()
+        res.json(img)
+    } catch (error) {
+        next(error)
+    }
+}
+const getComments = async (req, res, next) =>{
+    try {
+        const img = await PostModel.findOne({ _id: req.params.id })
+        res.json(img.comments)
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+export {postImg, getPosts, likeImg, disLikeImg, addComment, getComments};

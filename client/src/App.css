@@ -9,7 +9,7 @@ body{
 }
 
 /* Login form style start */
-form{
+form.login-form{
     margin: 0 auto;
     margin-top: 30vh;
     width: 20rem;
@@ -21,12 +21,12 @@ form{
     padding: 0 2rem;
 
 }
-form input{
+.login-form form input{
     margin-bottom: 2rem;
     height: 1.5rem;
     padding: 0.5rem;
 }
-form button{
+.login-form form button{
     height: 2rem;
     
 }
@@ -114,4 +114,27 @@ nav{
     margin: 0 auto;
     margin-top: 0.5rem;
     padding: 0rem 1rem;
+}
+/* Comment functionality */
+.comment--form{
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+    display: flex
+}
+.comment--textarea{
+    display: block;
+    width: 80%;
+    padding: 0.2rem 0.5rem;
+    outline: none;
+}
+.comment--textarea:focus{
+    outline: none;
+}
+.comment--button{
+    display: block;
+    width: 20%;
+    margin-left: 1rem;
+}
+.single--comment{
+    padding: 0.5rem 1rem;
 }

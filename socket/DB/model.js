@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const addPost = new mongoose.Schema(
-    {   
+    { 
         username: {
             type: String,
             require: true
@@ -17,8 +17,11 @@ const addPost = new mongoose.Schema(
         poepleLike: {
             type: [String],
             default : []
+        },
+        comments:{
+            type:[[String]],
+            default:[]
         }
-
     }
 )
 
