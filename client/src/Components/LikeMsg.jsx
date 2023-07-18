@@ -13,5 +13,19 @@ const LikeMsg = forwardRef((props, ref)=>{
         </div>
     )
 })
+const CommentMsg = forwardRef((props, ref)=>{
+    return (
+        <div className="like-msg" ref={ref}>
+            {props.comment.length < 1 ? <span>No message</span> : (
+                <>{
+                    props.comment.map((elmt, index) => <div key={index}> {elmt} comment on your picture</div>)
+                  }
+                    <button onClick={props.displayComment}>Clear</button>
+                </>
+                
+            )}
+        </div>
+    )
+})
 
-export default LikeMsg
+export {LikeMsg , CommentMsg}

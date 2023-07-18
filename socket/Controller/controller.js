@@ -57,7 +57,7 @@ const addComment = async (req, res, next) =>{
 const getComments = async (req, res, next) =>{
     try {
         const img = await PostModel.findOne({ _id: req.params.id })
-        res.json(img.comments)
+        res.json(img.comments.reverse())
     } catch (error) {
         next(error)
     }

@@ -47,8 +47,11 @@ io.on("connection", (socket) => {
   socket.on("like", (message)=> {
     if(isUserOnline(message.to)){
         io.to(getUserId(message.to)).emit("pictureLiked", message.user)
-    }else{
-        console.log("user not online")
+    }
+  })
+  socket.on("comment", (message) =>{
+    if(isUserOnline(message.to)){
+        io.to(getUserId(message.to)).emit("pictureCommented", message.user)
     }
   })
 });

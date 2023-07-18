@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 import axios from "axios"
-const Comment = ({imgId, user}) =>{
+const Comment = ({imgId, user, socket, postUser}) =>{
     const [comments, setComments] = useState([])
     const [singleComment, setSingleComment] = useState("")
     useEffect(()=>{
@@ -18,15 +18,16 @@ const Comment = ({imgId, user}) =>{
                 }
             )
             setComments((prev => [[singleComment, username], ...prev]))
+            socket.emit("comment", {"user" : username,"to":postUser})
         } catch (error) {
-            
+            console.log(error)
         }
         
     }
     const handleComment = (e) => setSingleComment(e.target.value)
 
     return (
-        <>
+        <div className="comment">
             <form className="comment--form" onSubmit={(e) => {
                 e.preventDefault()
                 handleCommentSub(user)
@@ -48,7 +49,7 @@ const Comment = ({imgId, user}) =>{
                     )
                 }
             )}
-        </>
+        </div>
     )
 }
 export default Comment

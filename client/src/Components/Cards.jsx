@@ -42,7 +42,8 @@ const Cards = ({user, socket, post}) =>{
                 }
                 <span className="comment-span" onClick={commentDisplayer}>📝</span> 
             </div>
-            {displayComment && <Comment imgId={post._id} user={user}/>}  
+            {displayComment && 
+            <Comment imgId={post._id} user={user} socket={socket} postUser={post.username}/>}  
         </div>
     )
 }
